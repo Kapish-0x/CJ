@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
+import { Github, Linkedin, Twitter, Globe } from "lucide-react";
 
 const WebBackground = ({ isDark }) => (
   <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
@@ -135,11 +136,11 @@ function SubmissionHeatmap({ isDark }) {
 
       <div className={`rounded-2xl border p-4 overflow-x-auto ${isDark ? "bg-[#13131F] border-white/8" : "bg-white border-gray-200 shadow-sm"}`}>
         {/* Month labels */}
-        <div className="flex gap-[3px] mb-1 pl-0">
+        <div className="flex gap-0.75 mb-1 pl-0">
           {weeks.map((_, wi) => {
             const label = monthLabels.find((m) => m.wi === wi);
             return (
-              <div key={wi} className="w-[10px] shrink-0">
+              <div key={wi} className="w-2.5 shrink-0">
                 {label ? (
                   <span className={`text-[9px] font-semibold ${isDark ? "text-gray-500" : "text-gray-400"}`}>
                     {label.label}
@@ -151,14 +152,14 @@ function SubmissionHeatmap({ isDark }) {
         </div>
 
         {/* Grid: 7 rows (days) × N cols (weeks) */}
-        <div className="flex gap-[3px]">
+        <div className="flex gap-0.75">
           {weeks.map((week, wi) => (
-            <div key={wi} className="flex flex-col gap-[3px]">
+            <div key={wi} className="flex flex-col gap-0.75">
               {week.map((day, di) =>
                 day ? (
                   <div
                     key={di}
-                    className={`w-[10px] h-[10px] rounded-[2px] cursor-pointer transition-opacity hover:opacity-80 ${cellColor(day.count, day.accepted)}`}
+                    className={`w-2.5 h-2.5 rounded-xs cursor-pointer transition-opacity hover:opacity-80 ${cellColor(day.count, day.accepted)}`}
                     onMouseEnter={(e) => {
                       const rect = e.currentTarget.getBoundingClientRect();
                       setTooltip({ ...day, x: rect.left, y: rect.top });
@@ -166,7 +167,7 @@ function SubmissionHeatmap({ isDark }) {
                     onMouseLeave={() => setTooltip(null)}
                   />
                 ) : (
-                  <div key={di} className="w-[10px] h-[10px]" />
+                  <div key={di} className="w-2.5 h-2.5" />
                 )
               )}
             </div>
@@ -179,7 +180,7 @@ function SubmissionHeatmap({ isDark }) {
           {[0, 1, 2, 3, 4].map((l) => (
             <div
               key={l}
-              className={`w-[10px] h-[10px] rounded-[2px] ${
+              className={`w-2.5 h-2.5 rounded-2.5 ${
                 l === 0
                   ? isDark ? "bg-white/5" : "bg-gray-100"
                   : l === 1 ? "bg-green-700/60"
@@ -217,10 +218,10 @@ function SubmissionHeatmap({ isDark }) {
 
 // ── Social Links Editor ───────────────────────────────────────────────────────
 const SOCIAL_FIELDS = [
-  { key: "github",   label: "GitHub",   placeholder: "https://github.com/yourname",   icon: "🐙" },
-  { key: "linkedin", label: "LinkedIn", placeholder: "https://linkedin.com/in/yourname", icon: "💼" },
-  { key: "twitter",  label: "Twitter/X",placeholder: "https://twitter.com/yourname",  icon: "🐦" },
-  { key: "website",  label: "Website",  placeholder: "https://yoursite.com",           icon: "🌐" },
+  { key: "github",   label: "GitHub",   placeholder: "https://github.com/yourname",   icon: Github },
+  { key: "linkedin", label: "LinkedIn", placeholder: "https://linkedin.com/in/yourname", icon: Linkedin },
+  { key: "twitter",  label: "Twitter/X",placeholder: "https://twitter.com/yourname",  icon: Twitter },
+  { key: "website",  label: "Website",  placeholder: "https://yoursite.com",           icon: Globe },
 ];
 
 function SocialLinksEditor({ isDark, user, updateUser }) {
