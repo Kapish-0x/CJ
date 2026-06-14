@@ -54,8 +54,8 @@ export const loginUser = expressAsyncHandler(async (req, res) => {
 
   res.cookie("token", signedToken, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // ✅ "none" needed for cross-origin (Vercel + Render)
+    secure: true,
+    sameSite: "none",
     maxAge: 60 * 60 * 1000, // 1 hour
   });
 
@@ -68,8 +68,8 @@ export const loginUser = expressAsyncHandler(async (req, res) => {
 export const logoutUser = expressAsyncHandler(async (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    secure: true,
+    sameSite: "none"
   });
   res.status(200).json({ message: "Logged out successfully" });
 });
