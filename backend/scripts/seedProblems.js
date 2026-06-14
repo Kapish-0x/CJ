@@ -1,3 +1,4 @@
+// Run with: node seedProblems.js
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { Problem } from "../models/Problem.js";
@@ -88,9 +89,11 @@ const seed = async () => {
     await mongoose.connect(process.env.MONGO_URI);
     console.log("✅ Connected to MongoDB");
 
+    // Clear old problems
     await Problem.deleteMany({});
     console.log("🗑️  Cleared existing problems");
 
+    // Insert new problems with test cases
     const inserted = await Problem.insertMany(problems);
     console.log(`🕷️  Inserted ${inserted.length} problems`);
 
