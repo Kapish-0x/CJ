@@ -19,7 +19,8 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://codejudge-teal.vercel.app"
+      "https://codejudge-teal.vercel.app",
+      "https://codejudge-2adpqlfer-kapish-0xs-projects.vercel.app"
     ],
     credentials: true,
   })
