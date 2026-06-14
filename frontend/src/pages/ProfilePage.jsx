@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
-import { Github, Linkedin, Globe } from "lucide-react";
+import { FaGithub, FaLinkedin, FaGlobe } from 'react-icons/fa6';
+
 
 const WebBackground = ({ isDark }) => (
   <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
@@ -218,9 +219,9 @@ function SubmissionHeatmap({ isDark }) {
 
 // ── Social Links Editor ───────────────────────────────────────────────────────
 const SOCIAL_FIELDS = [
-  { key: "github",   label: "GitHub",   placeholder: "https://github.com/yourname",   icon: Github },
-  { key: "linkedin", label: "LinkedIn", placeholder: "https://linkedin.com/in/yourname", icon: Linkedin },
-  { key: "website",  label: "Website",  placeholder: "https://yoursite.com",           icon: Globe },
+  { key: "github",   label: "GitHub",   placeholder: "https://github.com/yourname",   icon: FaGithub },
+  { key: "linkedin", label: "LinkedIn", placeholder: "https://linkedin.com/in/yourname", icon: FaLinkedin },
+  { key: "website",  label: "Website",  placeholder: "https://yoursite.com", icon: FaGlobe },
 ];
 
 function SocialLinksEditor({ isDark, user, updateUser }) {
