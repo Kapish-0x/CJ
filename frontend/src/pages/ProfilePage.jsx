@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 import { useAuth } from "../context/AuthContext";
-import { Github, Linkedin, Twitter, Globe } from "lucide-react";
+import { Github, Linkedin, Globe } from "lucide-react";
 
 const WebBackground = ({ isDark }) => (
   <svg className="absolute inset-0 w-full h-full opacity-[0.03] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
@@ -220,7 +220,6 @@ function SubmissionHeatmap({ isDark }) {
 const SOCIAL_FIELDS = [
   { key: "github",   label: "GitHub",   placeholder: "https://github.com/yourname",   icon: Github },
   { key: "linkedin", label: "LinkedIn", placeholder: "https://linkedin.com/in/yourname", icon: Linkedin },
-  { key: "twitter",  label: "Twitter/X",placeholder: "https://twitter.com/yourname",  icon: Twitter },
   { key: "website",  label: "Website",  placeholder: "https://yoursite.com",           icon: Globe },
 ];
 
@@ -229,7 +228,6 @@ function SocialLinksEditor({ isDark, user, updateUser }) {
   const [form, setForm] = useState({
     github: user?.socialLinks?.github || "",
     linkedin: user?.socialLinks?.linkedin || "",
-    twitter: user?.socialLinks?.twitter || "",
     website: user?.socialLinks?.website || "",
   });
   const [saving, setSaving] = useState(false);

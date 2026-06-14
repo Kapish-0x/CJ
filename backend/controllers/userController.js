@@ -37,14 +37,13 @@ export const getStarredProblems = expressAsyncHandler(async (req, res) => {
 
 // PATCH /api/users/profile  — update name + socialLinks
 export const updateProfile = expressAsyncHandler(async (req, res) => {
-  const { name, github, linkedin, twitter, website } = req.body;
+  const { name, github, linkedin, website } = req.body;
 
   // Build update object — only include provided fields
   const update = {};
   if (name !== undefined) update.name = name.trim();
   if (github !== undefined) update["socialLinks.github"] = github.trim();
   if (linkedin !== undefined) update["socialLinks.linkedin"] = linkedin.trim();
-  if (twitter !== undefined) update["socialLinks.twitter"] = twitter.trim();
   if (website !== undefined) update["socialLinks.website"] = website.trim();
 
   const user = await User.findByIdAndUpdate(
